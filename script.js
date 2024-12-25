@@ -1,9 +1,9 @@
-const API_KEY = 'eqz9/MB0Uz3iCop2CYqYdA==08nqsyMWcc8Pphlz';
-const WEATHER_API_KEY = 'f45bc5759c484bb35fd33cd9c1023748';
+require ('dotenv').config();
 
 const input = document.getElementById('city-input');
 const suggestions = document.getElementById('city-list');
 const weatherInfo = document.getElementById('weather-info');
+
 
 // requête API qui permet d'afficher une liste de ville en fonction de l'input du user
 const searchCity = async (cityName) => {
@@ -13,7 +13,7 @@ const searchCity = async (cityName) => {
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'X-Api-Key': API_KEY,
+        'X-Api-Key': process.env.API_KEY,
       },
     });
 
@@ -31,7 +31,7 @@ const searchCity = async (cityName) => {
 
 // requête API pour récupérer la météo de la ville selectionner
 const weatherData = async (cityName) => {
-  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${WEATHER_API_KEY}&units=metric&lang=fr`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${process.env.WEATHER_API_KEY}&units=metric&lang=fr`;
 
   try {
     
